@@ -1,12 +1,13 @@
 # Ignore all files
-*
-
-# Allow specific files
-!network.py
-!utils.py
-!train.py
-!refs/
-!README.md
-# !requirements.txt
-!LICENSE
-!/.gitignore
+.mypy_cache/
+__pycache__/
+saves/
+*.pyc
+*.pyo
+*.pyd
+WFDD/
+requirements.txt
+*.egg-info
+*.egg
+Untitled Diagram.drawio
+Multi_Scale_CBAM_Masked_RCNN.ipynb
