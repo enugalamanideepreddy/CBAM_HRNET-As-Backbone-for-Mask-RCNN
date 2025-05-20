@@ -1,0 +1,12 @@
+# Ignore all files
+*
+
+# Allow specific files
+!network.py
+!utils.py
+!train.py
+!refs/
+!README.md
+!requirements.txt
+!LICENSE
+!/.gitignore
