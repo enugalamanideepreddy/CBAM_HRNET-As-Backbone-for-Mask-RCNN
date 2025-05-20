@@ -7,6 +7,6 @@
 !train.py
 !refs/
 !README.md
-!requirements.txt
+# !requirements.txt
 !LICENSE
 !/.gitignore
