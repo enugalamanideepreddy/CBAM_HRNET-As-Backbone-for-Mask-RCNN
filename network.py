@@ -1,3 +1,4 @@
+import os
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -140,8 +141,16 @@ class HRNetBackbone(nn.Module):
         # out_indices specifies which stage outputs to return.
         # self.hrnet = timm.create_model('hrnet_w18', pretrained=False, features_only=True, out_indices=(0, 1, 2, 3))
         model = timm.create_model('hrnet_w18', pretrained=False, num_classes = 2)
-        model.load_state_dict(torch.load("/content/drive/MyDrive/Texture/finetuned_hrnet_w18_wfdd_v2.pth",
-                                         map_location = "cpu"))
+        
+        # Construct relative path to the checkpoint
+        checkpoint_dir = os.path.join(os.path.dirname(__file__), "..", "saves", "checkpoints")
+        checkpoint_path = os.path.abspath(os.path.join(checkpoint_dir, "best_seg.pth"))
+
+        if os.path.exists(checkpoint_path):
+            print(f"✅ Loading HRNet weights from: {checkpoint_path}")
+            model.load_state_dict(torch.load(checkpoint_path, map_location="cpu"))
+        else:
+            print(f"⚠️ Checkpoint not found at {checkpoint_path}. Skipping HRNet weight loading.")
         self.hrnet = HRNetFeatureExtractor(model)
         self.use_cbam = use_cbam
 
