@@ -140,17 +140,17 @@ class HRNetBackbone(nn.Module):
         # Create HRNet-w18 with multi-scale feature outputs.
         # out_indices specifies which stage outputs to return.
         # self.hrnet = timm.create_model('hrnet_w18', pretrained=False, features_only=True, out_indices=(0, 1, 2, 3))
-        model = timm.create_model('hrnet_w18', pretrained=False, num_classes = 2)
+        model = timm.create_model('hrnet_w18', pretrained=True, num_classes = 2)
         
-        # Construct relative path to the checkpoint
-        checkpoint_dir = os.path.join(os.path.dirname(__file__), "..", "saves", "checkpoints")
-        checkpoint_path = os.path.abspath(os.path.join(checkpoint_dir, "best_seg.pth"))
+        # # Construct relative path to the checkpoint
+        # checkpoint_dir = os.path.join(os.path.dirname(__file__), "..", "saves", "checkpoints")
+        # checkpoint_path = os.path.abspath(os.path.join(checkpoint_dir, "best_seg.pth"))
 
-        if os.path.exists(checkpoint_path):
-            print(f"✅ Loading HRNet weights from: {checkpoint_path}")
-            model.load_state_dict(torch.load(checkpoint_path, map_location="cpu"))
-        else:
-            print(f"⚠️ Checkpoint not found at {checkpoint_path}. Skipping HRNet weight loading.")
+        # if os.path.exists(checkpoint_path):
+        #     print(f"✅ Loading HRNet weights from: {checkpoint_path}")
+        #     model.load_state_dict(torch.load(checkpoint_path, map_location="cpu"))
+        # else:
+        #     print(f"⚠️ Checkpoint not found at {checkpoint_path}. Skipping HRNet weight loading.")
         self.hrnet = HRNetFeatureExtractor(model)
         self.use_cbam = use_cbam
 

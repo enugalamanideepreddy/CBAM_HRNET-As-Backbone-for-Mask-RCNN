@@ -7,8 +7,8 @@ data/
 *.pyo
 *.pyd
 WFDD/
-requirements.txt
 *.egg-info
 *.egg
 Untitled Diagram.drawio
 Multi_Scale_CBAM_Masked_RCNN.ipynb
+train_shapes.ipynb
